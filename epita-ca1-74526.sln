@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "epita-ca1-74526", "epita-ca1-74526\epita-ca1-74526.csproj", "{772750DA-B9C2-4EAE-943F-1545B96CA50F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "epita-ca1-74526", "epita-ca1-74526\epita-ca1-74526.csproj", "{60201E3D-120B-44DD-A302-8E805E21F0F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{772750DA-B9C2-4EAE-943F-1545B96CA50F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{772750DA-B9C2-4EAE-943F-1545B96CA50F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{772750DA-B9C2-4EAE-943F-1545B96CA50F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{772750DA-B9C2-4EAE-943F-1545B96CA50F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60201E3D-120B-44DD-A302-8E805E21F0F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60201E3D-120B-44DD-A302-8E805E21F0F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60201E3D-120B-44DD-A302-8E805E21F0F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60201E3D-120B-44DD-A302-8E805E21F0F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {72F82406-8226-41C7-917C-9D2F761CB942}
+		SolutionGuid = {53A86982-0A46-4A58-AE76-8E42539D91DE}
 	EndGlobalSection
 EndGlobal

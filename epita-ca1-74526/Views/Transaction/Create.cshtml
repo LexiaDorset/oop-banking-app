@@ -1,0 +1,25 @@
+﻿@using epita_ca1_74526.Data.Enum
+@model Transaction
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form method="post" asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Title">Title</label>
+        <input asp-for="Title" class="form-control" placeholder="Enter title">
+    </div>
+    <div class="form-group">
+        <label asp-for="transactionType">Type of Transaction</label>
+        <select asp-for="transactionType" asp-items="@Html.GetEnumSelectList<TransactionType>()"class="form-control" id="TransactionType">
+            <option>Select a type</option>
+        </select>
+        <span asp-validation-for="transactionType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Amount">Amount</label>
+        <input asp-for="Amount" class="form-control" placeholder="Enter Amount">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -1,0 +1,31 @@
+﻿@using epita_ca1_74526.Data.Enum
+@model Transaction
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+
+                        <div class="card-body">
+                        <p class="card-text">Title: @Model.Title</p>
+                        <p class="card-text">Account: @Model.AccountId</p>
+                        <p class="card-text">Type of transaction: @Model.transactionType</p>
+                        <p class="card-text">Amount: @Model.Amount</p>
+                        <p class="card-text">Final Balance: @Model.Balance</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">@Model.Date</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+</div>

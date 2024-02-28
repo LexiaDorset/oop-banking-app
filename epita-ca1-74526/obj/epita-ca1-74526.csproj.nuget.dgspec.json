@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\luc_p\\00-lucile\\EPITA\\Dorset\\poo\\epita-ca1-74526\\epita-ca1-74526\\epita-ca1-74526.csproj": {}
+    "C:\\Users\\luc_p\\00-lucile\\EPITA\\s4\\Dorset\\poo\\epita-ca1-74526\\epita-ca1-74526\\epita-ca1-74526.csproj": {}
   },
   "projects": {
-    "C:\\Users\\luc_p\\00-lucile\\EPITA\\Dorset\\poo\\epita-ca1-74526\\epita-ca1-74526\\epita-ca1-74526.csproj": {
+    "C:\\Users\\luc_p\\00-lucile\\EPITA\\s4\\Dorset\\poo\\epita-ca1-74526\\epita-ca1-74526\\epita-ca1-74526.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\luc_p\\00-lucile\\EPITA\\Dorset\\poo\\epita-ca1-74526\\epita-ca1-74526\\epita-ca1-74526.csproj",
+        "projectUniqueName": "C:\\Users\\luc_p\\00-lucile\\EPITA\\s4\\Dorset\\poo\\epita-ca1-74526\\epita-ca1-74526\\epita-ca1-74526.csproj",
         "projectName": "epita-ca1-74526",
-        "projectPath": "C:\\Users\\luc_p\\00-lucile\\EPITA\\Dorset\\poo\\epita-ca1-74526\\epita-ca1-74526\\epita-ca1-74526.csproj",
+        "projectPath": "C:\\Users\\luc_p\\00-lucile\\EPITA\\s4\\Dorset\\poo\\epita-ca1-74526\\epita-ca1-74526\\epita-ca1-74526.csproj",
         "packagesPath": "C:\\Users\\luc_p\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\luc_p\\00-lucile\\EPITA\\Dorset\\poo\\epita-ca1-74526\\epita-ca1-74526\\obj\\",
+        "outputPath": "C:\\Users\\luc_p\\00-lucile\\EPITA\\s4\\Dorset\\poo\\epita-ca1-74526\\epita-ca1-74526\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -42,6 +42,22 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

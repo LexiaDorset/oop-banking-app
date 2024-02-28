@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Transaction>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+
+                        <div class="card-body">
+                            <p class="card-text">Title: @item.Title</p>
+                            <p class="card-text">Account: @item.AccountId</p>
+                            <p class="card-text">Type of transaction: @item.transactionType</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a asp-control="Transaction" asp-action="Detail" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-outline-secondary">Details</a>
+                                </div>
+                                <small class="text-muted">@item.Date</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="btn-group">
+                <a asp-control="Transaction" asp-action="Create" type="button" class="btn btn-sm btn-outline-secondary">Add a new transactions</a>
+            </div>
+
+        </div>
+    </div>
+</div>

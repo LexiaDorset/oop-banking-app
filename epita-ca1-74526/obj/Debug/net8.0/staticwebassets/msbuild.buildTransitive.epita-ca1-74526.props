@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\epita-ca1-74526.props" />
+</Project>
