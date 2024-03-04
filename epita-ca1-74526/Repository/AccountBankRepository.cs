@@ -5,35 +5,35 @@ using Microsoft.EntityFrameworkCore;
 
 namespace epita_ca1_74526.Repository
 {
-    public class AccountRepository : IAccountRepository
+    public class AccountBankRepository : IAccountBankRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public AccountRepository(ApplicationDbContext context) 
+        public AccountBankRepository(ApplicationDbContext context) 
         {
             _context = context;
         }
-        public bool Add(Account account)
+        public bool Add(AccountBank account)
         {
             _context.Add(account);
             return Save();
         }
 
-        public bool Delete(Account account)
+        public bool Delete(AccountBank account)
         {
             _context.Remove(account);
             return Save();
         }
 
-        public async Task<IEnumerable<Account>> GetAll()
+        public async Task<IEnumerable<AccountBank>> GetAll()
         {
-            return await _context.Accounts.ToListAsync();
+            return await _context.AccountsBank.ToListAsync();
             
         }
 
-        public async Task<Account> GetByIdAsync(int id)
+        public async Task<AccountBank> GetByIdAsync(int id)
         {
-            return await _context.Accounts.Include(a =>a.transactions).FirstOrDefaultAsync(i => i.Id == id);
+            return await _context.AccountsBank.Include(a =>a.transactions).FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public bool Save()
@@ -42,7 +42,7 @@ namespace epita_ca1_74526.Repository
             return saved > 0 ? true : false;
         }
 
-        public bool Update(Account account)
+        public bool Update(AccountBank account)
         {
             _context.Update(account);
             return Save();

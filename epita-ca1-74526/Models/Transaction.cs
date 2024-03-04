@@ -14,7 +14,7 @@ namespace epita_ca1_74526.Models
 
         public string? Title { get; set; }
         public TransactionType transactionType { get; set; }
-        public void Process(Account account)
+        public void Process(AccountBank account)
         {
             if(transactionType is TransactionType.Withdraw)
             {

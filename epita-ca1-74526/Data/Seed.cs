@@ -14,31 +14,17 @@ namespace epita_ca1_74526.Data
 
                 context.Database.EnsureCreated();
 
-                if (!context.Users.Any())
-                {
-                    context.Users.AddRange(new List<AppUser>()
-                    {
-                        new AppUser()
-                        {
-                            firstName = "Lucile",
-                            lastName =  "Pelou",
-                            accountNumber = "ls-11-12-16",
-                            pin = "ls-11-12-16+1"
-                        }
-                    });
-                    context.SaveChanges();
-                }
                 //Accounts
-                if (!context.Accounts.Any())
+                if (!context.AccountsBank.Any())
                 {
-                    context.Accounts.AddRange(new List<Account>()
+                    context.AccountsBank.AddRange(new List<AccountBank>()
                     {
-                        new Account()
+                        new AccountBank()
                         {
                             accountType = AccountType.Checking,
                             Name = "ls-11-12-16"
                         },
-                        new Account()
+                        new AccountBank()
                         {
                             accountType = AccountType.Saving,
                             Name = "ls-11-12-16"
@@ -65,7 +51,7 @@ namespace epita_ca1_74526.Data
                 }
             }
         }
-        /*
+        
         public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
         {
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
@@ -87,15 +73,13 @@ namespace epita_ca1_74526.Data
                 {
                     var newAdminUser = new AppUser()
                     {
+                        firstName = "Lucile",
+                        lastName = "Pelou",
+                        accountNumber = "ls-11-12-16",
+                        pin = "ls-11-12-16+1",
                         UserName = "teddysmithdev",
                         Email = adminUserEmail,
                         EmailConfirmed = true,
-                        Address = new Address()
-                        {
-                            Street = "123 Main St",
-                            City = "Charlotte",
-                            State = "NC"
-                        }
                     };
                     await userManager.CreateAsync(newAdminUser, "Coding@1234?");
                     await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
@@ -108,20 +92,18 @@ namespace epita_ca1_74526.Data
                 {
                     var newAppUser = new AppUser()
                     {
+                        firstName = "John",
+                        lastName = "Rowley",
+                        accountNumber = "js-8-10-19",
+                        pin = "js-8-10-19+2",
                         UserName = "app-user",
                         Email = appUserEmail,
                         EmailConfirmed = true,
-                        Address = new Address()
-                        {
-                            Street = "123 Main St",
-                            City = "Charlotte",
-                            State = "NC"
-                        }
                     };
                     await userManager.CreateAsync(newAppUser, "Coding@1234?");
                     await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 }
             }
-        }*/
+        }
     }
 }

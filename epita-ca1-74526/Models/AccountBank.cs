@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace epita_ca1_74526.Models
 {
-    public class Account
+    public class AccountBank
     {
         [Key]
         public int Id { get; set; }

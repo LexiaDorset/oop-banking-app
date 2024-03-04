@@ -4,10 +4,10 @@ using System.Net.NetworkInformation;
 
 namespace epita_ca1_74526.Models
 {
-    public class AppUser
+    public class AppUser : IdentityUser
     {
-        [Key]
-        public int Id { get; set; }
+        //[Key]
+        //public int Id { get; set; }
       
         public string? firstName { get; set; }
 

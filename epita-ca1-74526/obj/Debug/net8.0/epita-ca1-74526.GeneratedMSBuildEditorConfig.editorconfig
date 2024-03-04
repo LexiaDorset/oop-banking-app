@@ -18,12 +18,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\luc_p\00-lucile\EPITA\s4\Dorset\poo\epita-ca1-74526\epita-ca1-74526
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/luc_p/00-lucile/EPITA/s4/Dorset/poo/epita-ca1-74526/epita-ca1-74526/Views/Account/Detail.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxEZXRhaWwuY3NodG1s
+[C:/Users/luc_p/00-lucile/EPITA/s4/Dorset/poo/epita-ca1-74526/epita-ca1-74526/Views/AccountBank/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudEJhbmtcRGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/luc_p/00-lucile/EPITA/s4/Dorset/poo/epita-ca1-74526/epita-ca1-74526/Views/Account/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
+[C:/Users/luc_p/00-lucile/EPITA/s4/Dorset/poo/epita-ca1-74526/epita-ca1-74526/Views/AccountBank/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudEJhbmtcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/luc_p/00-lucile/EPITA/s4/Dorset/poo/epita-ca1-74526/epita-ca1-74526/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/luc_p/00-lucile/EPITA/s4/Dorset/poo/epita-ca1-74526/epita-ca1-74526/Views/Home/Index.cshtml]
