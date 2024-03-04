@@ -23,6 +23,8 @@ namespace epita_ca1_74526.Controllers
             _userManager.Options.Password.RequiredLength = 2;
             _userManager.Options.Password.RequireNonAlphanumeric = false;
             _userManager.Options.Password.RequireDigit = false;
+            _userManager.Options.Password.RequireLowercase = false;
+
         }
         public IActionResult Login()
         {
@@ -37,7 +39,7 @@ namespace epita_ca1_74526.Controllers
             {
                 return View(loginViewModel);
             }
-            var user = await _userManager.FindByEmailAsync(loginViewModel.EmailAddress);
+            var user = await _userManager.FindByNameAsync(loginViewModel.firstName + loginViewModel.lastName);
 
             if(user != null)
             {
@@ -81,20 +83,26 @@ namespace epita_ca1_74526.Controllers
                 TempData["Error"] = "This email address is already in use";
                 return View(registerViewModel);
             }
+            registerViewModel.createPinAndName();
 
             var newUser = new AppUser()
             {
                 Email = registerViewModel.EmailAddress,
-                firstName = registerViewModel.EmailAddress,
-                lastName = registerViewModel.EmailAddress,
-                UserName = registerViewModel.EmailAddress
+                firstName = registerViewModel.firstName,
+                lastName = registerViewModel.lastName,
+                UserName = registerViewModel.firstName + registerViewModel.lastName,
+                pin = registerViewModel.pin,
+                accountNumber = registerViewModel.NameAccount
             };
-       
 
-            var newUserResponse = await _userManager.CreateAsync(newUser, registerViewModel.Password);
+            var newUserResponse = await _userManager.CreateAsync(newUser, newUser.pin);
             
             if(newUserResponse.Succeeded)
             {
+                newUser.pin += "+" + newUser.Id;
+                // Update User with good pin
+                await _userManager.UpdateAsync(newUser);
+
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
             }
             return RedirectToAction("Index", "Home");

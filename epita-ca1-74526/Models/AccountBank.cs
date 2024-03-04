@@ -1,5 +1,6 @@
 ﻿using epita_ca1_74526.Data.Enum;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace epita_ca1_74526.Models
 {
@@ -9,6 +10,7 @@ namespace epita_ca1_74526.Models
         public int Id { get; set; }
 
         public int Balance { get; protected set; } = 0;
+        [ForeignKey("AppUser")]
         public int UserId { get; set; }
 
         public string? Name { get; set; }

@@ -2,13 +2,13 @@
 @model RegisterViewModel
 
 @{
-    ViewData["Title"] = "Sign up";
+    ViewData["Title"] = "Create a new customer";
 }
 
 <div class="row">
     <div class="col-md-6 offset-3">
         <p>
-            <h4>Sign up for a new account</h4>
+            <h4>Fill the details below to create a new customer</h4>
         </p>
 
         @if (TempData["Error"] != null)
@@ -29,14 +29,14 @@
                         <span asp-validation-for="EmailAddress" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="Password" class="control-label"></label>
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <label asp-for="firstName" class="control-label"></label>
+                        <input asp-for="firstName" class="form-control" />
+                        <span asp-validation-for="firstName" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label asp-for="ConfirmPassword" class="control-label"></label>
-                        <input asp-for="ConfirmPassword" class="form-control" />
-                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        <label asp-for="lastName" class="control-label"></label>
+                        <input asp-for="lastName" class="form-control" />
+                        <span asp-validation-for="lastName" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">

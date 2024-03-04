@@ -57,12 +57,12 @@ namespace epita_ca1_74526.Data
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
             {
                 //Roles
-                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<int>>>();
 
                 if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+                    await roleManager.CreateAsync(new IdentityRole<int>(UserRoles.Admin));
                 if (!await roleManager.RoleExistsAsync(UserRoles.User))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+                    await roleManager.CreateAsync(new IdentityRole<int>(UserRoles.User));
 
                 //Users
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
