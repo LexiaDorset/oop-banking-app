@@ -19,6 +19,10 @@ namespace epita_ca1_74526.Controllers
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
+            _userManager.Options.Password.RequireUppercase = false;
+            _userManager.Options.Password.RequiredLength = 2;
+            _userManager.Options.Password.RequireNonAlphanumeric = false;
+            _userManager.Options.Password.RequireDigit = false;
         }
         public IActionResult Login()
         {
@@ -55,6 +59,52 @@ namespace epita_ca1_74526.Controllers
             // User doesn't exists
             TempData["Error"] = "This User doesn't exists.";
             return View(loginViewModel);
+        }
+
+        public IActionResult Register()
+        {
+            var response = new RegisterViewModel();
+            return View(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
+        {
+            // Check if the model state is valid
+            if(!ModelState.IsValid) 
+            {
+                return View(registerViewModel);
+            }
+            var user = await _userManager.FindByEmailAsync(registerViewModel.EmailAddress);
+            if(user != null) 
+            {
+                TempData["Error"] = "This email address is already in use";
+                return View(registerViewModel);
+            }
+
+            var newUser = new AppUser()
+            {
+                Email = registerViewModel.EmailAddress,
+                firstName = registerViewModel.EmailAddress,
+                lastName = registerViewModel.EmailAddress,
+                UserName = registerViewModel.EmailAddress
+            };
+       
+
+            var newUserResponse = await _userManager.CreateAsync(newUser, registerViewModel.Password);
+            
+            if(newUserResponse.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
