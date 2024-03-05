@@ -6,6 +6,8 @@ namespace epita_ca1_74526.Interfaces
     {
         Task<IEnumerable<AccountBank>> GetAll();
         Task<AccountBank> GetByIdAsync(int id);
+        Task<IEnumerable<AccountBank>> GetByUserIdAsync(int id);
+
         // Task<IEnumerable<Account>
         bool Add(AccountBank account);
         bool Update(AccountBank account);  

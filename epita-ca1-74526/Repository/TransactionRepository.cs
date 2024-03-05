@@ -35,6 +35,11 @@ namespace epita_ca1_74526.Repository
         {
             return await _context.Transactions.FirstOrDefaultAsync(i => i.Id == id);
         }
+        public async Task<IEnumerable<Transaction>> GetByAccountIdAsync(int id)
+        {
+            return await _context.Transactions.Where(i => i.AccountId == id).ToListAsync();
+        }
+
 
         public bool Save()
         {

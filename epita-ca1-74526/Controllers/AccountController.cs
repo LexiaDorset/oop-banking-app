@@ -39,31 +39,60 @@ namespace epita_ca1_74526.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
-            if(!ModelState.IsValid) 
+            if(!ModelState.IsValid && loginViewModel.SelectedRole != "Admin") 
             {
                 return View(loginViewModel);
             }
-            var user = await _userManager.FindByNameAsync(loginViewModel.firstName + loginViewModel.lastName);
+            if (loginViewModel.SelectedRole != "Admin")
+            {
+                var user = await _userManager.FindByNameAsync(loginViewModel.firstName + loginViewModel.lastName);
 
-            if(user != null)
-            {
-                // User is found, check password and sign if good
-                var passwordCheck = await _userManager.CheckPasswordAsync(user, loginViewModel.Password);
-                if(passwordCheck && user.accountNumber == loginViewModel.NameAccount)
+                if (user != null)
                 {
-                    // Password is ok so sign in
-                    var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
-                    if(result.Succeeded)
+                    // User is found, check password and sign if good
+                    var passwordCheck = await _userManager.CheckPasswordAsync(user, loginViewModel.Password);
+                    if (passwordCheck && user.accountNumber == loginViewModel.NameAccount)
                     {
-                        return RedirectToAction("Index", "Dashboard");
+                        // Password is ok so sign in
+                        var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
+                        if (result.Succeeded)
+                        {
+                            return RedirectToAction("Index", "Dashboard");
+                        }
                     }
+                    // Password or email is wrong
+                    TempData["Error"] = "Wrong password, email or account number.";
+                    return View(loginViewModel);
                 }
-                // Password or email is wrong
-                TempData["Error"] = "Wrong password, email or account number.";
+                // User doesn't exists
+                TempData["Error"] = "This User doesn't exists.";
                 return View(loginViewModel);
             }
-            // User doesn't exists
-            TempData["Error"] = "This User doesn't exists.";
+            else if(loginViewModel.Password != null)
+            {
+                var user = await _userManager.FindByNameAsync("lucilepelou");
+
+                if (user != null)
+                {
+                    // User is found, check password and sign if good
+                    var passwordCheck = await _userManager.CheckPasswordAsync(user, loginViewModel.Password);
+                    if (passwordCheck)
+                    {
+                        // Password is ok so sign in
+                        var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
+                        if (result.Succeeded)
+                        {
+                            return RedirectToAction("Index", "User");
+                        }
+                    }
+                    // Password or email is wrong
+                    TempData["Error"] = "Wrong password!";
+                    return View(loginViewModel);
+                }
+                // User doesn't exists
+                TempData["Error"] = "There is no admin here. Huh Strange...";
+                return View(loginViewModel);
+            }
             return View(loginViewModel);
         }
 

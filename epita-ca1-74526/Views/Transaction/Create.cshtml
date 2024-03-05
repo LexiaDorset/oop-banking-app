@@ -1,26 +1,43 @@
 ﻿@using epita_ca1_74526.Data.Enum
-@model Transaction
+@model epita_ca1_74526.ViewModels.CreateTransactionViewModel
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
-<form method="post" asp-action="Create">
+@{
+    ViewData["Title"] = "Create Transaction";
+}
+ <form method="post" asp-action="Create" enctype="multipart/form-data">
+    <input type="hidden" id="UserId" name="UserId" asp-for="Transaction.UserId" />
     <div class="form-group">
-        <label asp-for="Title">Title</label>
-        <input asp-for="Title" class="form-control" placeholder="Enter title">
+        <label asp-for="Transaction.Title">Title</label>
+        <input asp-for="Transaction.Title" class="form-control" placeholder="Enter title">
     </div>
     <div class="form-group">
-        <label asp-for="transactionType">Type of Transaction</label>
-        <select asp-for="transactionType" asp-items="@Html.GetEnumSelectList<TransactionType>()"class="form-control" id="TransactionType">
+        <label asp-for="Transaction.transactionType">Type of Transaction</label>
+        <select asp-for="Transaction.transactionType" asp-items="@Html.GetEnumSelectList<TransactionType>()" class="form-control" id="TransactionType">
             <option>Select a type</option>
         </select>
-        <span asp-validation-for="transactionType" class="text-danger"></span>
+        <span asp-validation-for="Transaction.transactionType" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Amount">Amount</label>
-        <input asp-for="Amount" class="form-control" placeholder="Enter Amount">
+        <label asp-for="Transaction.Amount">Amount</label>
+        <input asp-for="Transaction.Amount" class="form-control" placeholder="Enter Amount">
     </div>
+    <div class="form-group">
+        <label asp-for="Transaction.AccountId">Account</label>
+        <select asp-for="Transaction.AccountId" class="form-control" asp-items="@((SelectList)ViewData["UserAccounts"])">
+            <option value="">Select an account</option>
+            @foreach (var account in Model.UserAccounts)
+            {
+                <option value="@account.Id">@account.accountType</option>
+            }
+        </select>
+        </select>
+        <span asp-validation-for="Transaction.AccountId" class="text-danger"></span>
+    </div>
+
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

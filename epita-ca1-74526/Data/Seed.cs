@@ -81,12 +81,12 @@ namespace epita_ca1_74526.Data
                         firstName = "Lucile",
                         lastName = "Pelou",
                         accountNumber = "ls-11-12-16",
-                        pin = "1216+1",
+                        pin = "A1234",
                         UserName = "lucilepelou",
                         Email = adminUserEmail,
                         EmailConfirmed = true,
                     };
-                    await userManager.CreateAsync(newAdminUser, "1216+1");
+                    await userManager.CreateAsync(newAdminUser, "A1234");
                     await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
                 }
 

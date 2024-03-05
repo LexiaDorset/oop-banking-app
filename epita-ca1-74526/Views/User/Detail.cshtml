@@ -1,14 +1,10 @@
-﻿﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<AppUser> SignInManager
-@model epita_ca1_74526.ViewModels.DashboardViewModel
+﻿@model epita_ca1_74526.ViewModels.UserDetailViewModel
 
-@{
-    ViewData["Title"] = "Dashboard";
-}
-<h1 class="display-4 fw-normal">Dashboard</h1>
 <div class="album py-5 bg-light">
     <div class="container">
-        <h2 class="display-4 fw-normal">Your Accounts</h2>
+        <h2 class="display-4 fw-normal">Account of : @Model.UserName</h2>
+        <h2 class="display-4 fw-normal">Your Bank Accounts</h2>
+
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
             @foreach (var item in Model.AccountsBank)

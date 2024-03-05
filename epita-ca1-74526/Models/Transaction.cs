@@ -21,6 +21,10 @@ namespace epita_ca1_74526.Models
         {
             if(transactionType is TransactionType.Withdraw)
             {
+                if(Amount > account.Balance)
+                {
+                    Amount = account.Balance;
+                }
                 Balance = account.removeMoney(Amount);
             }
             else

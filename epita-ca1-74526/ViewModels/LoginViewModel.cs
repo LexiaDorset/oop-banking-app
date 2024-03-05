@@ -21,5 +21,7 @@ namespace epita_ca1_74526.ViewModels
 
         public string? NameAccount { get; set; }
 
+        public string SelectedRole { get; set; }
+
     }
 }
