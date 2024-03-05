@@ -1,4 +1,5 @@
 ﻿using epita_ca1_74526.Data;
+using epita_ca1_74526.Interfaces;
 using epita_ca1_74526.Models;
 using epita_ca1_74526.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -11,11 +12,14 @@ namespace epita_ca1_74526.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ApplicationDbContext _context;
+        private readonly IAccountBankRepository _accountRepository;
 
         public AccountController(UserManager<AppUser> userManager, 
             SignInManager<AppUser> signInManager,
-            ApplicationDbContext context)
+            ApplicationDbContext context, IAccountBankRepository accountRepository)
         {
+            _accountRepository = accountRepository;
+
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
@@ -45,17 +49,17 @@ namespace epita_ca1_74526.Controllers
             {
                 // User is found, check password and sign if good
                 var passwordCheck = await _userManager.CheckPasswordAsync(user, loginViewModel.Password);
-                if(passwordCheck)
+                if(passwordCheck && user.accountNumber == loginViewModel.NameAccount)
                 {
                     // Password is ok so sign in
                     var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
                     if(result.Succeeded)
                     {
-                        return RedirectToAction("Index", "AccountBank");
+                        return RedirectToAction("Index", "Dashboard");
                     }
                 }
                 // Password or email is wrong
-                TempData["Error"] = "Wrong password or email.";
+                TempData["Error"] = "Wrong password, email or account number.";
                 return View(loginViewModel);
             }
             // User doesn't exists
@@ -84,6 +88,7 @@ namespace epita_ca1_74526.Controllers
                 return View(registerViewModel);
             }
             registerViewModel.createPinAndName();
+            
 
             var newUser = new AppUser()
             {
@@ -100,10 +105,13 @@ namespace epita_ca1_74526.Controllers
             if(newUserResponse.Succeeded)
             {
                 newUser.pin += "+" + newUser.Id;
+               
                 // Update User with good pin
                 await _userManager.UpdateAsync(newUser);
 
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+                _accountRepository.Add(registerViewModel.createAccountsBank(Data.Enum.AccountType.Saving, newUser.Id));
+                _accountRepository.Add(registerViewModel.createAccountsBank(Data.Enum.AccountType.Checking, newUser.Id));
             }
             return RedirectToAction("Index", "Home");
         }

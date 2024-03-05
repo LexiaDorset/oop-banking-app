@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using epita_ca1_74526.Data.Enum;
+using epita_ca1_74526.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace epita_ca1_74526.ViewModels
@@ -36,6 +38,16 @@ namespace epita_ca1_74526.ViewModels
             pin = y + z;
             NameAccount = "" + char.ToLower(firstName[0]) + "" + char.ToLower(lastName[0])
                 + "" + "-" + (firstName.Length + lastName.Length) + "-" + y + "-" + z;
+        }
+
+        public AccountBank createAccountsBank(AccountType accountType, int userId)
+        {
+            return new AccountBank()
+            {
+                Name = NameAccount,
+                accountType = accountType,
+                UserId = userId,
+            };
         }
     }
 }

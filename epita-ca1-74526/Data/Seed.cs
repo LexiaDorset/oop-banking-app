@@ -15,7 +15,7 @@ namespace epita_ca1_74526.Data
                 context.Database.EnsureCreated();
 
                 //Accounts
-                if (!context.AccountsBank.Any())
+                /*if (!context.AccountsBank.Any())
                 {
                     context.AccountsBank.AddRange(new List<AccountBank>()
                     {
@@ -31,7 +31,7 @@ namespace epita_ca1_74526.Data
                         }
                     });
                     context.SaveChanges();
-                }
+                }*/
                 //Accounts
                 if (!context.Transactions.Any())
                 {
@@ -43,7 +43,7 @@ namespace epita_ca1_74526.Data
                             Date = DateTime.Now,
                             transactionType = TransactionType.Transferred,
                             AccountId = 1,
-                            UserId=1,
+                            UserId= 3,
                             Title = "test"
                         }
                     });
@@ -59,6 +59,7 @@ namespace epita_ca1_74526.Data
                 //Roles
                 var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<int>>>();
 
+                
                 if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
                     await roleManager.CreateAsync(new IdentityRole<int>(UserRoles.Admin));
                 if (!await roleManager.RoleExistsAsync(UserRoles.User))
@@ -66,8 +67,12 @@ namespace epita_ca1_74526.Data
 
                 //Users
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
-                string adminUserEmail = "teddysmithdeveloper@gmail.com";
-
+                string adminUserEmail = "74526@student.dorset-college.ie";
+                userManager.Options.Password.RequireUppercase = false;
+                userManager.Options.Password.RequiredLength = 2;
+                userManager.Options.Password.RequireNonAlphanumeric = false;
+                userManager.Options.Password.RequireDigit = false;
+                userManager.Options.Password.RequireLowercase = false;
                 var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
                 if (adminUser == null)
                 {
@@ -76,12 +81,12 @@ namespace epita_ca1_74526.Data
                         firstName = "Lucile",
                         lastName = "Pelou",
                         accountNumber = "ls-11-12-16",
-                        pin = "ls-11-12-16+1",
-                        UserName = "teddysmithdev",
+                        pin = "1216+1",
+                        UserName = "lucilepelou",
                         Email = adminUserEmail,
                         EmailConfirmed = true,
                     };
-                    await userManager.CreateAsync(newAdminUser, "Coding@1234?");
+                    await userManager.CreateAsync(newAdminUser, "1216+1");
                     await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
                 }
 
@@ -95,12 +100,12 @@ namespace epita_ca1_74526.Data
                         firstName = "John",
                         lastName = "Rowley",
                         accountNumber = "js-8-10-19",
-                        pin = "js-8-10-19+2",
-                        UserName = "app-user",
+                        pin = "1018+2",
+                        UserName = "johnrowley",
                         Email = appUserEmail,
                         EmailConfirmed = true,
                     };
-                    await userManager.CreateAsync(newAppUser, "Coding@1234?");
+                    await userManager.CreateAsync(newAppUser, "1018+2");
                     await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 }
             }

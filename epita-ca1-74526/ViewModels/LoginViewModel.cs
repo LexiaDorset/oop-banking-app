@@ -16,5 +16,10 @@ namespace epita_ca1_74526.ViewModels
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [Display(Name ="Name of account")]
+        [Required(ErrorMessage = "Name of account is required")]
+
+        public string? NameAccount { get; set; }
+
     }
 }
