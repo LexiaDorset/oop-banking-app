@@ -42,8 +42,8 @@
                     <div class="form-group">
                         <label asp-for="SelectedRole">Select a role</label>
                         <select asp-for="SelectedRole" class="form-control" id="role" onchange="this.form.submit()">
-                            <option value="User" selected>User</option>
-                            <option value="Admin">Admin</option>
+                            <option value="User" selected>Customer</option>
+                            <option value="Admin">Bank Employee</option>
                         </select>
                         <span asp-validation-for="SelectedRole" class="text-danger"></span>
                     </div>

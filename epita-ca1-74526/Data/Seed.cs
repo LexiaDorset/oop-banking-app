@@ -44,7 +44,8 @@ namespace epita_ca1_74526.Data
                             transactionType = TransactionType.Transferred,
                             AccountId = 1,
                             UserId= 3,
-                            Title = "test"
+                            Title = "test",
+                            Balance = 250
                         }
                     });
                     context.SaveChanges();

@@ -3,7 +3,16 @@
 <div class="album py-5 bg-light">
     <div class="container">
         <h2 class="display-4 fw-normal">Account of : @Model.UserName</h2>
-        <h2 class="display-4 fw-normal">Your Bank Accounts</h2>
+        <ul>
+            <li>Account: @Model.AccountsBank.Count</li>
+            <li>UserName: @Model.UserName</li>
+            <li>Email: @Model.Email</li>
+            @if(Model.AccountsBank.Count > 0)
+            {
+                 <li>Accounts Number: @Model.AccountsBank[0].Name</li>
+            }
+        </ul>
+        <h2 class="display-4 fw-normal">Bank Accounts</h2>
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
@@ -25,7 +34,7 @@
                 </div>
             }
         </div>
-        <h2 class="display-4 fw-normal">Your Transactions</h2>
+        <h2 class="display-4 fw-normal">Transactions</h2>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             @foreach (var item in Model.Transactions)
             {
@@ -34,8 +43,9 @@
 
                         <div class="card-body">
                             <p class="card-text">Title: @item.Title</p>
-                            <p class="card-text">Account: @item.AccountId</p>
                             <p class="card-text">Type of transaction: @item.transactionType</p>
+                            <p class="card-text">Amount: @item.Amount</p>
+                            <p class="card-text">Final Balance: @item.Balance</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a href="@Url.Action("Detail", "Transaction", new { id = item.Id })" class="btn btn-sm btn-outline-secondary">Details</a>
@@ -48,7 +58,7 @@
             }
         </div>
         <div class="btn-group">
-            <a href="@Url.Action("Create", "Transaction")" class="btn btn-sm btn-outline-secondary">Add a new transactions</a>
+            <a href="@Url.Action("CreateAdmin", "User", new { id = Model.Id })" class="btn btn-sm btn-outline-secondary">Add a new transactions</a>
         </div>
 
     </div>

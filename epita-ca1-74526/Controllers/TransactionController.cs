@@ -14,6 +14,8 @@ namespace epita_ca1_74526.Controllers
         private readonly ITransactionRepository _transactionRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IAccountBankRepository _accountBankRepository;
+        private readonly IUserRepository _userRepository;
+
         public TransactionController(ITransactionRepository transactionRepository,
             IHttpContextAccessor httpContextAccessor, IAccountBankRepository accountBankRepository) 
         {
@@ -70,5 +72,7 @@ namespace epita_ca1_74526.Controllers
             _transactionRepository.Add(transaction);
             return RedirectToAction("Index", "Dashboard");
         }
+
+        
     }
 }

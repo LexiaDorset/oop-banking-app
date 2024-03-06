@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-md-6 offset-3">
         <p>
-            <h4>Fill the details below to create a new customer</h4>
+            <h4 class="text-center">Fill the details below to create a new customer</h4>
         </p>
 
         @if (TempData["Error"] != null)
@@ -39,9 +39,9 @@
                         <span asp-validation-for="lastName" class="text-danger"></span>
                     </div>
 
-                    <div class="form-group">
-                        <input class="btn btn-outline-success float-right" type="submit" value="Sign up" />
-                        <a class="btn btn-outline-secondary" asp-controller="Race" asp-action="Index">Cancel</a>
+                    <div class="form-group" style="justify-content:stretch ; display:flex;margin-top:8px">
+                        <input class="btn btn-outline-success float-right" type="submit" style="width: -moz-available;" value="Add a new customer" />
+                        <a class="btn btn-outline-secondary" asp-controller="User" style="width: -moz-available;" asp-action="Index">Cancel</a>
                     </div>
                 </form>
             </div>
