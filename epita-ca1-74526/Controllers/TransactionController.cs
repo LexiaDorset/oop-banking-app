@@ -17,10 +17,12 @@ namespace epita_ca1_74526.Controllers
         private readonly IUserRepository _userRepository;
 
         public TransactionController(ITransactionRepository transactionRepository,
-            IHttpContextAccessor httpContextAccessor, IAccountBankRepository accountBankRepository) 
+            IHttpContextAccessor httpContextAccessor, IAccountBankRepository accountBankRepository,
+            IUserRepository userRepository) 
         {
             _transactionRepository = transactionRepository;
             _accountBankRepository = accountBankRepository;
+            _userRepository = userRepository;
             _httpContextAccessor = httpContextAccessor;
         }
         public async Task<IActionResult> Index()
@@ -66,8 +68,10 @@ namespace epita_ca1_74526.Controllers
                 return View(transaction);
             }
             var transactionAccount = await _accountBankRepository.GetByIdAsync((int)transaction.AccountId);
-            transaction.Process(transactionAccount);
             var curUser = _httpContextAccessor.HttpContext.User.GetUserId();
+            var user = await _userRepository.GetUserById(curUser);
+
+            transaction.Process(transactionAccount, user);
             transaction.UserId = curUser;
             _transactionRepository.Add(transaction);
             return RedirectToAction("Index", "Dashboard");

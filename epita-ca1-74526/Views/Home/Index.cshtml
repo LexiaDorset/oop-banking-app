@@ -1,60 +1,123 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<section class="jumbotron text-center">
+<div class="jumbotron">
     <div class="container">
-        <h1 class="jumbotron-heading">Bank App</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-        <p>
-            <a href="#" class="btn btn-primary my-2">Main call to action</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>
+        <h1 class="display-3">Banking Application (First assessment) - 20%</h1>
+        <p>In this page you can find the consign of the applications and some aditional stuff.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
     </div>
-</section>
-<div class="row">
-    <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+</div>
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Logging in</h2>
+            <ul >
+                <li>
+                    <p>An opening menu should ask if you are a Bank Employee or a Customer &#x2713; </p>
+                    <div class="card">
+                        <div class="card-body">
+                            The opening is in the page /Account/Login.
+                            If you already log in you will be redirect to your
+                            dashboard or users list if you are admin.
+                        </div>
                     </div>
-                    <small class="text-muted">9 mins</small>
-                </div>
-            </div>
+                </li>
+                <li>
+                    <p>To successfully login as a bank employee you must type in the pin 'A1234' &#x2713; </p>
+                </li>
+                <li>
+                    <p>To successfully login as a customer, you must enter your first name, last name, account number and pin &#x2713; </p>
+                    <div class="card">
+                        <div class="card-body">
+                            The consign was not very clear about how work the accounts of the users.
+                            I have done that in the way that every user can connect with a pin which 
+                            is constitued of the id the user. Once the user is connected he can access to ALL
+                            of his accounts.
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h2>Bank employee view</h2>
+            <ul >
+                <li>
+                    <p>
+                        As a bank employee you can create and delete customers.
+                        To create a customer account you need 
+                        first name, last name and email &#x2713; 
+                    </p>
+                    <div class="card">
+                        <div class="card-body">
+                            Once connected the admin can do that in the 
+                            page users.
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <p>Each new customer gets a savings account and a current account  &#x2713; </p>
+                </li>
+                <li>
+                    <p>Bank employee can only delete customers who have zero balances. 
+                        And they can create transactions (lodge, withdraw) for each customer. 
+                       They should be able to add and withdraw for a specified account
+                        &#x2713; 
+                    </p>
+                </li>
+                <li>
+                    <p>Bank employee should be able to show a complete list of customers including their 
+                        balances in savings and current account &#x2713; </p>
+                    <div class="card">
+                        <div class="card-body">
+                            This is in the page users.
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h2>Customer view</h2>
+            <ul >
+                <li>
+                    <p>To login, a customer must enter their name, account code 
+                        AND a pin number for their account &#x2713; </p>
+                    <div class="card">
+                        <div class="card-body">
+                            As explained in the logging, the consign was not very clear about how work the accounts of the users.
+                            I have done that in the way that every user can connect with a pin which 
+                            is constitued of the id the user. Once the user is connected he can access to ALL
+                            of his accounts.
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <p>A customer can retrieve the transaction history for their specified account &#x2713; </p>
+                    <div class="card">
+                        <div class="card-body">
+                            In the Dashboard the user can view 
+                            the detail of each account.
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <p>A customer can add and subtract money to either their savings account or current account  &#x2713; </p>
+                    <div class="card">
+                        <div class="card-body">
+                            In the Dashboard the user add new transactions 
+                            for watever account he wants.
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <p>Customer cannot have negative balance &#x2713;</p>
+                </li>
+            </ul>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card mb-4 box-shadow">
-            <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-            <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                </div>
-            </div>
-        </div>
-    </div>
+
+    <hr>
+
+</div>

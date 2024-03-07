@@ -11,13 +11,14 @@ namespace epita_ca1_74526.Models
         public DateTime Date { get; set; }
         public int Amount { get; set; }
         public int? Balance { get; set; }
+        [ForeignKey("AccountBank")]
         public int? AccountId { get; set; }
         [ForeignKey("AppUser")]
         public int? UserId { get; set; }
 
         public string? Title { get; set; }
         public TransactionType transactionType { get; set; }
-        public void Process(AccountBank account)
+        public void Process(AccountBank account, AppUser user)
         {
             if(transactionType is TransactionType.Withdraw)
             {
@@ -26,10 +27,12 @@ namespace epita_ca1_74526.Models
                     Amount = account.Balance;
                 }
                 Balance = account.removeMoney(Amount);
+                user.removeMoney(Amount);
             }
             else
             {
                 Balance = account.addMoney(Amount);
+                user.addMoney(Amount);
             }
         }
         public Transaction()

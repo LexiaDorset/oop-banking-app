@@ -9,6 +9,16 @@
 <div class="album py-5 bg-light">
     <div class="container">
         <h2 class="display-4 fw-normal">Your Accounts</h2>
+        <ul>
+            <li>Number of Bank Account: @Model.AccountsBank.Count</li>
+            <li>UserName: @Model.user.UserName</li>
+            <li>Email: @Model.user.Email</li>
+            <li>Balance: @Model.user.Balance</li>
+            @if (Model.AccountsBank.Count > 0)
+            {
+                <li>Accounts Number: @Model.AccountsBank[0].Name</li>
+            }
+        </ul>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
             @foreach (var item in Model.AccountsBank)
@@ -38,7 +48,6 @@
 
                         <div class="card-body">
                             <p class="card-text">Title: @item.Title</p>
-                            <p class="card-text">Account: @item.AccountId</p>
                             <p class="card-text">Type of transaction: @item.transactionType</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">

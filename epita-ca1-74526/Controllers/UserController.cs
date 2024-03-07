@@ -3,6 +3,7 @@ using epita_ca1_74526.Interfaces;
 using epita_ca1_74526.Models;
 using epita_ca1_74526.Repository;
 using epita_ca1_74526.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -15,15 +16,20 @@ namespace epita_ca1_74526.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IAccountBankRepository _accountBankRepository;
         private readonly ITransactionRepository _transactionRepository;
+        private readonly UserManager<AppUser> _userManager;
+
 
         public UserController(IUserRepository userRepository, ApplicationDbContext context,
-             IAccountBankRepository accountBankRepository, ITransactionRepository transactionRepository)
+             IAccountBankRepository accountBankRepository, ITransactionRepository transactionRepository,
+             UserManager<AppUser> userManager)
         {
             _userRepository = userRepository;
             _context = context;
             _accountBankRepository = accountBankRepository;
             _transactionRepository = transactionRepository;
+            _userManager = userManager;
         }
+
         [HttpGet("users")]
         public async Task<IActionResult> Index()
         {
@@ -31,10 +37,12 @@ namespace epita_ca1_74526.Controllers
             List<UserViewModel> result = new List<UserViewModel>();
             foreach (var user in users)
             {
+                var userAccountsBank = _context.AccountsBank.Where(r => r.UserId == user.Id);
                 var userViewModel = new UserViewModel()
                 {
                     Id = user.Id,
-                    UserName = user.UserName
+                    UserName = user.UserName,
+                    AccountsBank = userAccountsBank.ToList()
                 };
                 result.Add(userViewModel);  
             }
@@ -53,7 +61,8 @@ namespace epita_ca1_74526.Controllers
                 UserName = user.UserName,
                 Email = user.Email,
                 AccountsBank = userAccountsBank.ToList(),
-                Transactions = userTransactions.ToList()
+                Transactions = userTransactions.ToList(),
+                Balance = user.Balance
             };
             return View(userDetailViewModel);
         }
@@ -86,11 +95,55 @@ namespace epita_ca1_74526.Controllers
             Transaction.Title = createAdminTransactionViewModel.Title;
             Transaction.transactionType = createAdminTransactionViewModel.transactionType;
             Transaction.Amount = createAdminTransactionViewModel.Amount;
-
-            Transaction.Process(transactionAccount);
+            var user = await _userRepository.GetUserById(id);
+            Transaction.Process(transactionAccount, user);
             Transaction.UserId = id;
             _transactionRepository.Add(Transaction);
             return RedirectToAction("Index", "User");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var user = await _userRepository.GetUserById(id);
+            if (user == null) return View("Error");
+            return View(user);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteAccount(int id)
+        {
+            var user = await _userRepository.GetUserById(id);
+
+            if (user == null)
+            {
+                TempData["Error"] = "This user doesn't exists!";
+
+                return View(user);
+            }
+            if(user.Balance > 0)
+            {
+                TempData["Error"] = "You cannot delete an account with more than zero in balance";
+                return View(user);
+            }
+            else
+            {
+                var userAccounts = await _accountBankRepository.GetByUserIdAsync(id);
+                foreach (var userAccount in userAccounts)
+                {
+                    var transactionAccounts = await _transactionRepository.GetByAccountIdAsync(userAccount.Id);
+                    foreach (var transaction in transactionAccounts)
+                    {
+                        _transactionRepository.Delete(transaction);
+
+                    }
+                    _accountBankRepository.Delete(userAccount);
+                }
+                var newUserResponse = await _userManager.DeleteAsync(user);
+
+
+                return RedirectToAction("Index", "User");
+            }           
         }
     }
 }

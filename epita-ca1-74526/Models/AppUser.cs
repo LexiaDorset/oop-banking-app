@@ -16,5 +16,17 @@ namespace epita_ca1_74526.Models
 
         public string? pin { get; set; }
 
+        public int? Balance { get; set; } = 0;
+
+        public void addMoney(int amount)
+        {
+            Balance += amount;
+        }
+
+        public void removeMoney(int amount) 
+        {
+            Balance -= amount;
+        }
+
     }
 }

@@ -10,10 +10,12 @@
 
 <div class="album py-5 bg-light">
     <div class="container">
+        <h1>Account number: @Model.AccountBank.Name</h1>
+
         <div class="row">
             <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
 
+                <div class="card mb-4 box-shadow">
                     <div class="card-body">
                         <p class="card-text">Account: @Model.AccountBank.accountType</p>
                         <p class="card-text">Balance: @Model.AccountBank.Balance</p>
@@ -21,7 +23,7 @@
                 </div>
             </div>
               
-            <h1>Historic transactions</h1>
+            <h2>Historic transactions</h2>
 
             @foreach (var item in Model.TransactionsAccount)
             {
@@ -31,6 +33,8 @@
                         <div class="card-body">
                             <p class="card-text">Title: @item.Title</p>
                             <p class="card-text">Type of transaction: @item.transactionType</p>
+                            <p class="card-text">Amount: @item.Amount</p>
+                            <p class="card-text">Final Balance: @item.Balance</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a href="@Url.Action("Detail", "Transaction", new { id = item.Id })" class="btn btn-sm btn-outline-secondary">Details</a>

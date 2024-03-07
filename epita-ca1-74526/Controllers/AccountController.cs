@@ -146,7 +146,7 @@ namespace epita_ca1_74526.Controllers
                 _accountRepository.Add(registerViewModel.createAccountsBank(Data.Enum.AccountType.Saving, newUser.Id));
                 _accountRepository.Add(registerViewModel.createAccountsBank(Data.Enum.AccountType.Checking, newUser.Id));
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "User");
         }
 
         [HttpPost]
