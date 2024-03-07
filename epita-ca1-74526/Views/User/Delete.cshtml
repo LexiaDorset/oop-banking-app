@@ -14,15 +14,15 @@
     <ul>
         <li>UserName: @Model.UserName</li>
         <li>Email: @Model.Email</li>
-        
+        <li>Balance: @Model.Balance</li>
+        <li>Account Number: @Model.accountNumber</li>
     </ul>
     <div class="form-group  mb-3 text-center" style="margin-top:5px">
-        <form action="Delete" method="post">
-            <input type="hidden" asp-for="Id" />
-            <input type="submit" value="Confirm" class="btn btn-danger float-right mt-3" />
-             <span asp-validation-for="Balance" class="text-danger"></span>
-        </form>
-        <a class="btn btn-outline-secondary" asp-controller="User" style="width: -moz-available;" asp-action="Index">Cancel</a>
-
+            <form action="Delete" method="post">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="Confirm"  class="btn btn-danger float-right" />
+                 <span asp-validation-for="Balance" class="text-danger"></span>
+            </form>
+            <a class="btn btn-outline-secondary" asp-controller="User" asp-action="Index">Cancel</a>
     </div>
 </form>
