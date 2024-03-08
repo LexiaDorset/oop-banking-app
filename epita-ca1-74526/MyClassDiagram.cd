@@ -21,5 +21,68 @@
       <FileName>Models\Transaction.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="epita_ca1_74526.Data.ApplicationDbContext">
+    <Position X="6.75" Y="3.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\ApplicationDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="epita_ca1_74526.Data.UserRoles">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\UserRoles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="epita_ca1_74526.ClaimsPrincipalExtensions">
+    <Position X="11.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ClaimsPrincipalExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="epita_ca1_74526.Interfaces.IAccountBankRepository">
+    <Position X="6.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAAAAAgAAAAAAAAAAAAAEAAAAAAgAAAAAAIAA=</HashCode>
+      <FileName>Interfaces\IAccountBankRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="epita_ca1_74526.Interfaces.IDashboardRepository">
+    <Position X="10.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IDashboardRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="epita_ca1_74526.Interfaces.ITransactionRepository">
+    <Position X="8.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAAAAAAAAAAAAAAEAAAAAEAAAAAAgAAAAAAIAA=</HashCode>
+      <FileName>Interfaces\ITransactionRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="epita_ca1_74526.Interfaces.IUserRepository">
+    <Position X="12" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAIAIAAAAAAAAAAAAABAAAAEAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Interfaces\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="epita_ca1_74526.Data.Enum.AccountType">
+    <Position X="2.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Enum\AccountType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="epita_ca1_74526.Data.Enum.TransactionType">
+    <Position X="4" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Enum\TransactionType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
