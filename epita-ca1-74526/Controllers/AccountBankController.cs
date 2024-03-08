@@ -31,6 +31,10 @@ namespace epita_ca1_74526.Controllers
         public async Task<IActionResult> Detail(int id) 
         { 
             AccountBank account = await _accountRepository.GetByIdAsync(id);
+            if(account == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
             var userTransactions = await _transactionRepository.GetByAccountIdAsync(id);
 
             var viewModel = new DetailAccountBankViewModel

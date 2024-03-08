@@ -1,33 +1,17 @@
 ﻿@model IEnumerable<AccountBank>
 
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+@if (User.Identity.IsAuthenticated)
+{
+    @if (User.IsInRole("admin"))
+    {
+        <meta http-equiv="refresh" content="0; url=@Url.Action("Index", "User")" />
+    }
+    else
+    {
+        <meta http-equiv="refresh" content="0; url=@Url.Action("Index", "Dashboard")" />
+    }
 }
-
-<div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row">
-
-        @foreach(var item in Model)
-        {
-            <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                  
-                    <div class="card-body">
-                        <p class="card-text">Account: @item.accountType</p>
-                            <p class="card-text">Balance: @item.Balance</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a asp-control="Account" asp-action="Detail" asp-route-id="@item.Id" type="button" class="btn btn-sm btn-outline-secondary">Details</a>
-                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-       
-        </div>
-    </div>
-</div>
+else
+{
+    <meta http-equiv="refresh" content="0; url=@Url.Action("Index", "Home")" />
+}

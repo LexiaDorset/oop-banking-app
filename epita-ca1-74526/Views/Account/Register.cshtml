@@ -4,47 +4,53 @@
 @{
     ViewData["Title"] = "Create a new customer";
 }
+@if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+{
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <p>
+                <h4 class="text-center">Fill the details below to create a new customer</h4>
+            </p>
 
-<div class="row">
-    <div class="col-md-6 offset-3">
-        <p>
-            <h4 class="text-center">Fill the details below to create a new customer</h4>
-        </p>
+            @if (TempData["Error"] != null)
+            {
+                <div class="col-md-12 alert alert-danger">
+                    <span><b>Sorry!</b> - @TempData["Error"] </span>
+                </div>
+            }
 
-        @if (TempData["Error"] != null)
-        {
-            <div class="col-md-12 alert alert-danger">
-                <span><b>Sorry!</b> - @TempData["Error"] </span>
-            </div>
-        }
+            <div class="row">
+                <div class="col-md-8 offset-2">
+                    <form asp-action="Register">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <div class="row">
-            <div class="col-md-8 offset-2">
-                <form asp-action="Register">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="EmailAddress" class="control-label"></label>
+                            <input asp-for="EmailAddress" class="form-control" />
+                            <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="firstName" class="control-label"></label>
+                            <input asp-for="firstName" class="form-control" />
+                            <span asp-validation-for="firstName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="lastName" class="control-label"></label>
+                            <input asp-for="lastName" class="form-control" />
+                            <span asp-validation-for="lastName" class="text-danger"></span>
+                        </div>
 
-                    <div class="form-group">
-                        <label asp-for="EmailAddress" class="control-label"></label>
-                        <input asp-for="EmailAddress" class="form-control" />
-                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="firstName" class="control-label"></label>
-                        <input asp-for="firstName" class="form-control" />
-                        <span asp-validation-for="firstName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="lastName" class="control-label"></label>
-                        <input asp-for="lastName" class="form-control" />
-                        <span asp-validation-for="lastName" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group" style="justify-content:stretch ; display:flex;margin-top:8px">
-                        <input class="btn btn-outline-success float-right" type="submit" style="width: -moz-available;" value="Add a new customer" />
-                        <a class="btn btn-outline-secondary" asp-controller="User" style="width: -moz-available;" asp-action="Index">Cancel</a>
-                    </div>
-                </form>
+                        <div class="form-group" style="justify-content:stretch ; display:flex;margin-top:8px">
+                            <input class="btn btn-outline-success float-right" type="submit" style="width: -moz-available;" value="Add a new customer" />
+                            <a class="btn btn-outline-secondary" asp-controller="User" style="width: -moz-available;" asp-action="Index">Cancel</a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}
+else
+{
+    <h1>You don't have the permission to access to this page!</h1>
+}

@@ -6,7 +6,7 @@ namespace epita_ca1_74526.Data
 {
     public class Seed
     {
-        public static void SeedData(IApplicationBuilder applicationBuilder)
+       /* public static void SeedData(IApplicationBuilder applicationBuilder)
         {
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
             {
@@ -15,7 +15,7 @@ namespace epita_ca1_74526.Data
                 context.Database.EnsureCreated();
 
                 //Accounts
-                /*if (!context.AccountsBank.Any())
+                if (!context.AccountsBank.Any())
                 {
                     context.AccountsBank.AddRange(new List<AccountBank>()
                     {
@@ -31,7 +31,7 @@ namespace epita_ca1_74526.Data
                         }
                     });
                     context.SaveChanges();
-                }*/
+                }
                 //Accounts
                 if (!context.Transactions.Any())
                 {
@@ -51,7 +51,7 @@ namespace epita_ca1_74526.Data
                     context.SaveChanges();
                 }
             }
-        }
+        }*/
         
         public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
         {
@@ -89,25 +89,6 @@ namespace epita_ca1_74526.Data
                     };
                     await userManager.CreateAsync(newAdminUser, "A1234");
                     await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
-                }
-
-                string appUserEmail = "user@etickets.com";
-
-                var appUser = await userManager.FindByEmailAsync(appUserEmail);
-                if (appUser == null)
-                {
-                    var newAppUser = new AppUser()
-                    {
-                        firstName = "John",
-                        lastName = "Rowley",
-                        accountNumber = "js-8-10-19",
-                        pin = "1018+2",
-                        UserName = "johnrowley",
-                        Email = appUserEmail,
-                        EmailConfirmed = true,
-                    };
-                    await userManager.CreateAsync(newAppUser, "1018+2");
-                    await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 }
             }
         }

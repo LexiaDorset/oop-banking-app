@@ -140,5 +140,4 @@ C:\Users\luc_p\00-lucile\EPITA\s4\Dorset\poo\epita-ca1-74526\epita-ca1-74526\bin
 C:\Users\luc_p\00-lucile\EPITA\s4\Dorset\poo\epita-ca1-74526\epita-ca1-74526\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\luc_p\00-lucile\EPITA\s4\Dorset\poo\epita-ca1-74526\epita-ca1-74526\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\luc_p\00-lucile\EPITA\s4\Dorset\poo\epita-ca1-74526\epita-ca1-74526\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
-C:\Users\luc_p\00-lucile\EPITA\s4\Dorset\poo\epita-ca1-74526\epita-ca1-74526\bin\Debug\net8.0\.filenesting.json
 C:\Users\luc_p\00-lucile\EPITA\s4\Dorset\poo\epita-ca1-74526\epita-ca1-74526\obj\Debug\net8.0\epita-ca.D7BA6860.Up2Date

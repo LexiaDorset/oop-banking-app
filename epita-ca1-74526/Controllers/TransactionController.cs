@@ -34,6 +34,10 @@ namespace epita_ca1_74526.Controllers
         public async Task<IActionResult> Detail(int id)
         {
             Transaction transaction = await _transactionRepository.GetByIdAsync(id);
+            if (transaction == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
             var accountBankR = new AccountBank();
             if (transaction.AccountId != null)
             {

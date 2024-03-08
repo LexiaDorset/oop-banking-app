@@ -137,12 +137,18 @@ namespace epita_ca1_74526.Controllers
             
             if(newUserResponse.Succeeded)
             {
+
                 newUser.pin += "+" + newUser.Id;
-               
+                
                 // Update User with good pin
                 await _userManager.UpdateAsync(newUser);
-
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+
+                // Remove the old password
+                await _userManager.RemovePasswordAsync(newUser);
+                // Add the new user password with the good id
+                await _userManager.AddPasswordAsync(newUser, newUser.pin);
+
                 _accountRepository.Add(registerViewModel.createAccountsBank(Data.Enum.AccountType.Saving, newUser.Id));
                 _accountRepository.Add(registerViewModel.createAccountsBank(Data.Enum.AccountType.Checking, newUser.Id));
             }

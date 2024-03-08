@@ -17,23 +17,35 @@ namespace epita_ca1_74526.Controllers
         private readonly IAccountBankRepository _accountBankRepository;
         private readonly ITransactionRepository _transactionRepository;
         private readonly UserManager<AppUser> _userManager;
-
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly SignInManager<AppUser> _signInManager;
 
         public UserController(IUserRepository userRepository, ApplicationDbContext context,
              IAccountBankRepository accountBankRepository, ITransactionRepository transactionRepository,
-             UserManager<AppUser> userManager)
+             UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor,
+             SignInManager<AppUser> signInManager)
         {
             _userRepository = userRepository;
             _context = context;
             _accountBankRepository = accountBankRepository;
             _transactionRepository = transactionRepository;
             _userManager = userManager;
+            _httpContextAccessor = httpContextAccessor;
+            _signInManager = signInManager;
         }
 
         [HttpGet("users")]
         public async Task<IActionResult> Index()
         {
+            var curUser = _httpContextAccessor.HttpContext.User.GetUserId();
+            var userCheck = await _userRepository.GetUserById(curUser);
+            if (userCheck == null)
+            {
+                await _signInManager.SignOutAsync();
+                return RedirectToAction("Login", "Account");
+            }
             var users = await _userRepository.GetAllUsersUser();
+
             List<UserViewModel> result = new List<UserViewModel>();
             foreach (var user in users)
             {
@@ -52,6 +64,10 @@ namespace epita_ca1_74526.Controllers
         public async Task<IActionResult> Detail(int id)
         {
             var user = await _userRepository.GetUserById(id);
+            if (user == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
             var userAccountsBank = _context.AccountsBank.Where(r => r.UserId == id);
             var userTransactions = _context.Transactions.Where(r => r.UserId == id);
 
@@ -70,7 +86,10 @@ namespace epita_ca1_74526.Controllers
         public async Task<IActionResult> CreateAdmin(int id)
         {
             var userAccounts = await _accountBankRepository.GetByUserIdAsync(id);
-
+            if (userAccounts.Count() == 0)
+            {
+                return RedirectToAction("Index", "User");
+            }
             var viewModel = new CreateAdminTransactionViewModel
             {
                 UserAccounts = userAccounts
@@ -99,14 +118,17 @@ namespace epita_ca1_74526.Controllers
             Transaction.Process(transactionAccount, user);
             Transaction.UserId = id;
             _transactionRepository.Add(Transaction);
-            return RedirectToAction("Index", "User");
+            return RedirectToAction("Detail", "User", new { id });
         }
 
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
             var user = await _userRepository.GetUserById(id);
-            if (user == null) return View("Error");
+            if(user == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
             return View(user);
         }
 

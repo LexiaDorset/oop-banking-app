@@ -8,6 +8,16 @@
 @{
     ViewData["Title"] = "Create Transaction";
 }
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <meta http-equiv="refresh" content="0; url=@Url.Action("Index", "Home")" />
+}
+else if ((User.IsInRole("admin")))
+{
+    <meta http-equiv="refresh" content="0; url=@Url.Action("Index", "User")" />
+}
+
  <form method="post" asp-action="Create" enctype="multipart/form-data">
     <input type="hidden" id="UserId" name="UserId" asp-for="Transaction.UserId" />
     <div class="form-group">
