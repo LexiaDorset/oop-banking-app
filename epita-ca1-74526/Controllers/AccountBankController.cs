@@ -14,24 +14,30 @@ namespace epita_ca1_74526.Controllers
         private readonly IAccountBankRepository _accountRepository;
         private readonly ITransactionRepository _transactionRepository;
 
-
+        /// Initializes a new instance of the <see cref="AccountBankController"/> class.
         public AccountBankController(
             IAccountBankRepository accountRepository,
-            ITransactionRepository transactionRepository) 
+            ITransactionRepository transactionRepository)
         {
             _accountRepository = accountRepository;
             _transactionRepository = transactionRepository;
         }
+
+        /// Displays the list of all bank accounts.
+        /// <returns>The view containing the list of bank accounts.</returns>
         public async Task<IActionResult> Index()
         {
             IEnumerable<AccountBank> accounts = await _accountRepository.GetAll();
             return View(accounts);
         }
 
-        public async Task<IActionResult> Detail(int id) 
-        { 
+        /// Displays the details of a bank account.
+        /// <param name="id">The ID of the bank account.</param>
+        /// <returns>The view containing the details of the bank account.</returns>
+        public async Task<IActionResult> Detail(int id)
+        {
             AccountBank account = await _accountRepository.GetByIdAsync(id);
-            if(account == null)
+            if (account == null)
             {
                 return RedirectToAction("Error", "Home");
             }
@@ -45,7 +51,5 @@ namespace epita_ca1_74526.Controllers
 
             return View(viewModel);
         }
-
-        
     }
 }

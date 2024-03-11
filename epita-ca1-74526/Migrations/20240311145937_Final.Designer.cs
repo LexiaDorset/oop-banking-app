@@ -12,8 +12,8 @@ using epita_ca1_74526.Data;
 namespace epita_ca1_74526.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240307175322_FinalMayb")]
-    partial class FinalMayb
+    [Migration("20240311145937_Final")]
+    partial class Final
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -240,9 +240,6 @@ namespace epita_ca1_74526.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("accountNumber")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("firstName")
                         .HasColumnType("nvarchar(max)");

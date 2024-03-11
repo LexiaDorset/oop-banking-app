@@ -20,6 +20,7 @@ namespace epita_ca1_74526.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly SignInManager<AppUser> _signInManager;
 
+        /// Initializes a new instance of the <see cref="UserController"/> class.
         public UserController(IUserRepository userRepository, ApplicationDbContext context,
              IAccountBankRepository accountBankRepository, ITransactionRepository transactionRepository,
              UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor,
@@ -34,6 +35,8 @@ namespace epita_ca1_74526.Controllers
             _signInManager = signInManager;
         }
 
+        /// Gets the list of users.
+        /// <returns>The view containing the list of users.</returns>
         [HttpGet("users")]
         public async Task<IActionResult> Index()
         {
@@ -56,11 +59,14 @@ namespace epita_ca1_74526.Controllers
                     UserName = user.UserName,
                     AccountsBank = userAccountsBank.ToList()
                 };
-                result.Add(userViewModel);  
+                result.Add(userViewModel);
             }
             return View(result);
         }
 
+        /// Gets the details of a user.
+        /// <param name="id">The user ID.</param>
+        /// <returns>The view containing the user details.</returns>
         public async Task<IActionResult> Detail(int id)
         {
             var user = await _userRepository.GetUserById(id);
@@ -83,6 +89,9 @@ namespace epita_ca1_74526.Controllers
             return View(userDetailViewModel);
         }
 
+        /// Creates an admin transaction for a user.
+        /// <param name="id">The user ID.</param>
+        /// <returns>The view for creating an admin transaction.</returns>
         public async Task<IActionResult> CreateAdmin(int id)
         {
             var userAccounts = await _accountBankRepository.GetByUserIdAsync(id);
@@ -98,10 +107,14 @@ namespace epita_ca1_74526.Controllers
             return View(viewModel);
         }
 
+        /// Creates an admin transaction for a user.
+        /// <param name="id">The user ID.</param>
+        /// <param name="createAdminTransactionViewModel">The view model for creating an admin transaction.</param>
+        /// <returns>The view for creating an admin transaction.</returns>
         [HttpPost]
-        public async Task<IActionResult> CreateAdmin(int id,  CreateAdminTransactionViewModel createAdminTransactionViewModel)
+        public async Task<IActionResult> CreateAdmin(int id, CreateAdminTransactionViewModel createAdminTransactionViewModel)
         {
-            if(createAdminTransactionViewModel.transactionType == null
+            if (createAdminTransactionViewModel.transactionType == null
                 && createAdminTransactionViewModel.Title == null &&
                 createAdminTransactionViewModel.AccountId == 0)
             {
@@ -121,17 +134,24 @@ namespace epita_ca1_74526.Controllers
             return RedirectToAction("Detail", "User", new { id });
         }
 
+        /// Deletes a user.
+        /// <param name="id">The user ID.</param>
+        /// <returns>The view for deleting a user.</returns>
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
             var user = await _userRepository.GetUserById(id);
-            if(user == null)
+            if (user == null)
             {
                 return RedirectToAction("Error", "Home");
             }
+
             return View(user);
         }
 
+        /// Deletes a user account.
+        /// <param name="id">The user ID.</param>
+        /// <returns>The view for deleting a user account.</returns>
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteAccount(int id)
         {
@@ -143,7 +163,7 @@ namespace epita_ca1_74526.Controllers
 
                 return View(user);
             }
-            if(user.Balance > 0)
+            if (user.Balance > 0)
             {
                 TempData["Error"] = "You cannot delete an account with more than zero in balance";
                 return View(user);
@@ -165,7 +185,7 @@ namespace epita_ca1_74526.Controllers
 
 
                 return RedirectToAction("Index", "User");
-            }           
+            }
         }
     }
 }

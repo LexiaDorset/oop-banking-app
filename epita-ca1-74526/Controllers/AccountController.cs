@@ -14,7 +14,8 @@ namespace epita_ca1_74526.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IAccountBankRepository _accountRepository;
 
-        public AccountController(UserManager<AppUser> userManager, 
+        /// Initializes a new instance of the <see cref="AccountController"/> class.
+        public AccountController(UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
             ApplicationDbContext context, IAccountBankRepository accountRepository)
         {
@@ -30,22 +31,28 @@ namespace epita_ca1_74526.Controllers
             _userManager.Options.Password.RequireLowercase = false;
 
         }
+
+        /// Displays the login view.
+        /// <returns>The login view.</returns>
         public IActionResult Login()
         {
             var response = new LoginViewModel();
             return View(response);
         }
 
+        /// Handles the login form submission.
+        /// <param name="loginViewModel">The login view model.</param>
+        /// <returns>The result of the login attempt.</returns>
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
-            if(!ModelState.IsValid && loginViewModel.SelectedRole != "Admin") 
+            if (!ModelState.IsValid && loginViewModel.SelectedRole != "Admin")
             {
                 return View(loginViewModel);
             }
             if (loginViewModel.SelectedRole != "Admin")
             {
-                if(loginViewModel.firstName + loginViewModel.lastName != "lucilepelou")
+                if (loginViewModel.firstName + loginViewModel.lastName != "lucilepelou")
                 {
                     var user = await _userManager.FindByNameAsync(loginViewModel.firstName + loginViewModel.lastName);
 
@@ -53,7 +60,7 @@ namespace epita_ca1_74526.Controllers
                     {
                         // User is found, check password and sign if good
                         var passwordCheck = await _userManager.CheckPasswordAsync(user, loginViewModel.Password);
-                        if (passwordCheck && user.accountNumber == loginViewModel.NameAccount)
+                        if (passwordCheck)
                         {
                             // Password is ok so sign in
                             var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
@@ -72,7 +79,7 @@ namespace epita_ca1_74526.Controllers
                 }
                 return View(loginViewModel);
             }
-            else if(loginViewModel.Password != null)
+            else if (loginViewModel.Password != null)
             {
                 var user = await _userManager.FindByNameAsync("lucilepelou");
 
@@ -100,28 +107,33 @@ namespace epita_ca1_74526.Controllers
             return View(loginViewModel);
         }
 
+        /// Displays the registration view.
+        /// <returns>The registration view.</returns>
         public IActionResult Register()
         {
             var response = new RegisterViewModel();
             return View(response);
         }
 
+        /// Handles the registration form submission.
+        /// <param name="registerViewModel">The register view model.</param>
+        /// <returns>The result of the registration attempt.</returns>
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
         {
             // Check if the model state is valid
-            if(!ModelState.IsValid) 
+            if (!ModelState.IsValid)
             {
                 return View(registerViewModel);
             }
             var user = await _userManager.FindByEmailAsync(registerViewModel.EmailAddress);
-            if(user != null) 
+            if (user != null)
             {
                 TempData["Error"] = "This email address is already in use";
                 return View(registerViewModel);
             }
             registerViewModel.createPinAndName();
-            
+
 
             var newUser = new AppUser()
             {
@@ -129,17 +141,16 @@ namespace epita_ca1_74526.Controllers
                 firstName = registerViewModel.firstName,
                 lastName = registerViewModel.lastName,
                 UserName = registerViewModel.firstName + registerViewModel.lastName,
-                pin = registerViewModel.pin,
-                accountNumber = registerViewModel.NameAccount
+                pin = registerViewModel.pin
             };
 
             var newUserResponse = await _userManager.CreateAsync(newUser, newUser.pin);
-            
-            if(newUserResponse.Succeeded)
+
+            if (newUserResponse.Succeeded)
             {
 
                 newUser.pin += "+" + newUser.Id;
-                
+
                 // Update User with good pin
                 await _userManager.UpdateAsync(newUser);
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
@@ -155,6 +166,8 @@ namespace epita_ca1_74526.Controllers
             return RedirectToAction("Index", "User");
         }
 
+        /// Handles the logout action.
+        /// <returns>Redirect to home.</returns>
         [HttpPost]
         public async Task<IActionResult> Logout()
         {

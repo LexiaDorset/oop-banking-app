@@ -19,7 +19,7 @@ namespace epita_ca1_74526.Controllers
 
         public DashboardController(IDashboardRepository dashboardRepository,
             IHttpContextAccessor httpContextAccessor, IUserRepository userRepository,
-                        SignInManager<AppUser> signInManager) 
+                        SignInManager<AppUser> signInManager)
         {
             _dashboardRepository = dashboardRepository;
             _httpContextAccessor = httpContextAccessor;
@@ -28,13 +28,15 @@ namespace epita_ca1_74526.Controllers
         }
 
 
+        /// Action method for the dashboard index page.
+        /// <returns>The view for the dashboard index page.</returns>
         public async Task<IActionResult> Index()
         {
             var userAccountsBank = await _dashboardRepository.GetAllUserAccountsBank();
             var userTransactions = await _dashboardRepository.GetAllUserTransactions();
             var curUser = _httpContextAccessor.HttpContext.User.GetUserId();
             var user = await _userRepository.GetUserById(curUser);
-            if(user == null)
+            if (user == null)
             {
                 await _signInManager.SignOutAsync();
                 return RedirectToAction("Login", "Account");

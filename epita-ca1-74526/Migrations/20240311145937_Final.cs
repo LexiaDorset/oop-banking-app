@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace epita_ca1_74526.Migrations
 {
     /// <inheritdoc />
-    public partial class FinalMayb : Migration
+    public partial class Final : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -50,7 +50,6 @@ namespace epita_ca1_74526.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     firstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     lastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    accountNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     pin = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Balance = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),

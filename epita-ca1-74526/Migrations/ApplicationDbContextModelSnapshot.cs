@@ -238,9 +238,6 @@ namespace epita_ca1_74526.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("accountNumber")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("firstName")
                         .HasColumnType("nvarchar(max)");
 

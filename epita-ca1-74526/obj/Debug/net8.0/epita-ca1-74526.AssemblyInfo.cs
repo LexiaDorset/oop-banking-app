@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("epita-ca1-74526")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ce6a2886c05e4c922584c5973085ee607189823")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fedf9c6df5d84b3822f6aa5590275488def37381")]
 [assembly: System.Reflection.AssemblyProductAttribute("epita-ca1-74526")]
 [assembly: System.Reflection.AssemblyTitleAttribute("epita-ca1-74526")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

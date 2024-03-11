@@ -16,21 +16,28 @@ namespace epita_ca1_74526.Controllers
         private readonly IAccountBankRepository _accountBankRepository;
         private readonly IUserRepository _userRepository;
 
+        /// Initializes a new instance of the <see cref="TransactionController"/> class.
         public TransactionController(ITransactionRepository transactionRepository,
             IHttpContextAccessor httpContextAccessor, IAccountBankRepository accountBankRepository,
-            IUserRepository userRepository) 
+            IUserRepository userRepository)
         {
             _transactionRepository = transactionRepository;
             _accountBankRepository = accountBankRepository;
             _userRepository = userRepository;
             _httpContextAccessor = httpContextAccessor;
         }
+
+        /// Displays the list of transactions.
+        /// <returns>The view displaying the list of transactions.</returns>
         public async Task<IActionResult> Index()
         {
             IEnumerable<Transaction> transactions = await _transactionRepository.GetAll();
             return View(transactions);
         }
 
+        /// Retrieves the details of a transaction by its ID.
+        /// <param name="id">The ID of the transaction.</param>
+        /// <returns>The view displaying the details of the transaction.</returns>
         public async Task<IActionResult> Detail(int id)
         {
             Transaction transaction = await _transactionRepository.GetByIdAsync(id);
@@ -41,15 +48,18 @@ namespace epita_ca1_74526.Controllers
             var accountBankR = new AccountBank();
             if (transaction.AccountId != null)
             {
-               accountBankR = await _accountBankRepository.GetByIdAsync((int)transaction.AccountId);
+                accountBankR = await _accountBankRepository.GetByIdAsync((int)transaction.AccountId);
             }
             var viewModel = new DetailTransactionViewModel
             {
                 transaction = transaction,
                 accountBank = accountBankR
-        };
+            };
             return View(viewModel);
         }
+
+        /// Displays the create transaction form.
+        /// <returns>The view displaying the create transaction form.</returns>
         public async Task<IActionResult> Create()
         {
             var curUser = _httpContextAccessor.HttpContext.User.GetUserId();
@@ -64,10 +74,13 @@ namespace epita_ca1_74526.Controllers
             return View(viewModel);
         }
 
+        /// Handles the submission of the create transaction form.
+        /// <param name="transaction">The transaction object.</param>
+        /// <returns>The view displaying the list of transactions.</returns>
         [HttpPost]
         public async Task<IActionResult> Create(Transaction transaction)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(transaction);
             }
@@ -80,7 +93,5 @@ namespace epita_ca1_74526.Controllers
             _transactionRepository.Add(transaction);
             return RedirectToAction("Index", "Dashboard");
         }
-
-        
     }
 }

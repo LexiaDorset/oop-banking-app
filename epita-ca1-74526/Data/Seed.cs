@@ -81,7 +81,6 @@ namespace epita_ca1_74526.Data
                     {
                         firstName = "Lucile",
                         lastName = "Pelou",
-                        accountNumber = "ls-11-12-16",
                         pin = "A1234",
                         UserName = "lucilepelou",
                         Email = adminUserEmail,
