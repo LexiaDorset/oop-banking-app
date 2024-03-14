@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-
+// Name: Lucile Pelou
+// Student number: 74526
 #nullable disable
 
 namespace epita_ca1_74526.Migrations

@@ -2,7 +2,8 @@
 using epita_ca1_74526.Interfaces;
 using epita_ca1_74526.Models;
 using Microsoft.EntityFrameworkCore;
-
+// Name: Lucile Pelou
+// Student number: 74526
 namespace epita_ca1_74526.Repository
 {
     public class AccountBankRepository : IAccountBankRepository

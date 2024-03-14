@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.Net.NetworkInformation;
-
+// Name: Lucile Pelou
+// Student number: 74526
 namespace epita_ca1_74526.Models
 {
     /// Represents an user.

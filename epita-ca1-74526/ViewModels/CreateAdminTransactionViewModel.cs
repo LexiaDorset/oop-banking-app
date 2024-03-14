@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Diagnostics.CodeAnalysis;
 
+// Name: Lucile Pelou
+// Student number: 74526
 namespace epita_ca1_74526.ViewModels
 {
     public class CreateAdminTransactionViewModel

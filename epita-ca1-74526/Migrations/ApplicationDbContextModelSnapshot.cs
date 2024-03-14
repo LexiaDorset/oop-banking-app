@@ -5,7 +5,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using epita_ca1_74526.Data;
-
+// Name: Lucile Pelou
+// Student number: 74526
 #nullable disable
 
 namespace epita_ca1_74526.Migrations

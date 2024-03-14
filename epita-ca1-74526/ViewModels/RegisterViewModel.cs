@@ -2,7 +2,8 @@
 using epita_ca1_74526.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-
+// Name: Lucile Pelou
+// Student number: 74526
 namespace epita_ca1_74526.ViewModels
 {
     /// View model for the registration form.

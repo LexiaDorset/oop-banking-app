@@ -1,7 +1,8 @@
 using epita_ca1_74526.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-
+// Name: Lucile Pelou
+// Student number: 74526
 namespace epita_ca1_74526.Controllers
 {
     public class HomeController : Controller

@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-
+// Name: Lucile Pelou
+// Student number: 74526
 namespace epita_ca1_74526.Controllers
 {
     public class UserController : Controller

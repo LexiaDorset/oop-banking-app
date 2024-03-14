@@ -5,7 +5,8 @@ using epita_ca1_74526.Repository;
 using epita_ca1_74526.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+// Name: Lucile Pelou
+// Student number: 74526
 namespace epita_ca1_74526.Controllers
 {
     public class AccountBankController : Controller
