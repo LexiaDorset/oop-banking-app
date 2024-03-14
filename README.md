@@ -1,3 +1,5 @@
 # epita-ca1-74526
 
-Assignement number 1 in POO
+Individual Assessment #1 - Banking Application
+Student n°74526
+Lucile Pelou

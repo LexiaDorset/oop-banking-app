@@ -17,13 +17,14 @@
         <h1 class="display-4 fw-normal">Dashboard</h1>
         <div class="album py-5 bg-light">
             <div class="container">
-                <h2 class="display-4 fw-normal">Your Accounts</h2>
+                <h2 class="display-4 fw-normal">Your Account information</h2>
                 <ul>
                     <li>Number of Bank Account: @Model.AccountsBank.Count</li>
                     <li>UserName: @Model.user.UserName</li>
                     <li>Email: @Model.user.Email</li>
                     <li>Balance: @Model.user.Balance</li>
                 </ul>
+                <h2 class="display-4 fw-normal">Your Bank accounts</h2>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
                     @foreach (var item in Model.AccountsBank)
