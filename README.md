@@ -14,7 +14,7 @@
 
 1. Clone this repository :
    ```bash
-   git clone https://github.com/LexiaDorset/poo-banking-app.git
+   git clone https://github.com/LexiaDorset/oop-banking-app.git
 
 2. Open the sln of the projet with Visual Studio
 
